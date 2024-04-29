@@ -37,5 +37,5 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          [ -z $A ] && echo Aempty || echo $A
-          [ -z $B ] && echo Bempty || echo $B
+          [ -z $A ] && echo Aempty || echo "A:$A"
+          [ -z $B ] && echo Bempty || echo "B:$B"
