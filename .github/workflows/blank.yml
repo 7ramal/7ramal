@@ -40,5 +40,5 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          node -p "console.log(String(process.env.A).split(' '))"
-          node -p "console.log(String(process.env.B).split(' '))"
+          node -p "console.log(process.env.A)"
+          node -p "console.log(process.env.B)"
