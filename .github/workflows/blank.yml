@@ -33,7 +33,6 @@ jobs:
       - name: Run a multi-line script
         env:
           A: 10
-          B: 20
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
