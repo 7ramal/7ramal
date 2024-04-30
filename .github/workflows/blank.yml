@@ -46,4 +46,5 @@ jobs:
         run: |
           node -p "console.log(String(process.env.NODE_AUTH_TOKEN).length)"
           npm pkg set version='0.0.3'
-          npm publish --access public
+          ISPUBLISHED=$(node ./isPublished.js)
+          [ $ISPUBLISHED = false ] && npm publish --access public || echo "already published"
