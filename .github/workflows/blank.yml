@@ -36,13 +36,13 @@ jobs:
           echo test, and deploy your project.
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           registry-url: "https://registry.npmjs.org"
 
       - name: Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN_AUTOMATION_DONT_EXIST }}
+          NODE_AUTH_TOKEN: ${{ secrets.REPO_NPM_TOKEN_READONLY }}
         run: |
           node -p "console.log(String(process.env.NODE_AUTH_TOKEN).length)"
           npm pkg set version='0.0.5'
