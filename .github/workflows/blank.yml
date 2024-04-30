@@ -42,9 +42,9 @@ jobs:
 
       - name: Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.REPO_NPM_TOKEN_AUTOMATION }}
+          NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN_AUTOMATION }}
         run: |
-          node -p "console.log(String(process.env.NODE_AUTH_TOKEN).length)"
-          npm pkg set version='0.0.5'
+          node -p "'token length: ' + String(process.env.NODE_AUTH_TOKEN).length"
+          npm pkg set version='0.0.6'
           ISPUBLISHED=$(node ./isPublished.js)
           [ $ISPUBLISHED = true ] && echo "already published" || npm publish --access public
