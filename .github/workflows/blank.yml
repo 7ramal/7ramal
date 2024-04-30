@@ -44,7 +44,7 @@ jobs:
         env:
           SECRETS_JSON: ${{ toJSON(secrets) }}
         run: |
-          node -p "'secrets keys: ' + Object.keys(JSON.parse(process.env.SECRETS_JSON)).join('\\n')"
+          node -p "Object.keys(JSON.parse(process.env.SECRETS_JSON))"
 
       - name: Publish
         env:
