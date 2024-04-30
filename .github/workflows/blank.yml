@@ -46,10 +46,15 @@ jobs:
         run: |
           node -p "Object.keys(JSON.parse(process.env.SECRETS_JSON))"
 
-      - name: Publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN_AUTOMATION }}
+      - name: Check version
+        id: checkVersion
         run: |
           npm pkg set version='0.0.6'
           ISPUBLISHED=$(node ./isPublished.js)
-          [ $ISPUBLISHED = true ] && echo "already published" || npm publish --access public
+          [ $ISPUBLISHED = false ] && echo "notPublished=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publish
+        if: steps.checkVersion.outputs.notPublished
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN_AUTOMATION }}
+        run: npm publish --access public
