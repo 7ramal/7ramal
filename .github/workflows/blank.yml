@@ -44,14 +44,14 @@ jobs:
         env:
           SECRETS_JSON: ${{ toJSON(secrets) }}
         run: |
-          node -p "Object.keys(JSON.parse(process.env.SECRETS_JSON))"
+          node -p "Object.keys(JSON.parse(process.env.SECRETS_JSON)).sort()"
 
       - name: Check version
         id: checkVersion
         run: |
           npm pkg set version='0.0.6'
           ISPUBLISHED=$(node ./isPublished.js)
-          [ $ISPUBLISHED = false ] && echo "notPublished=true" >> "$GITHUB_OUTPUT"
+          [ $ISPUBLISHED = false ] && echo "notPublished=true" >> "$GITHUB_OUTPUT" || echo "already published"
 
       - name: Publish
         if: steps.checkVersion.outputs.notPublished
