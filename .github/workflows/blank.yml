@@ -45,6 +45,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN_AUTOMATION }}
         run: |
           node -p "console.log(String(process.env.NODE_AUTH_TOKEN).length)"
-          npm pkg set version='0.0.3'
+          npm pkg set version='0.0.4'
           ISPUBLISHED=$(node ./isPublished.js)
           [ $ISPUBLISHED = false ] && npm publish --access public || echo "already published"
