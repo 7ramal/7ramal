@@ -45,4 +45,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.REPO_NPM_TOKEN_AUTOMATION }}
         run: |
           node -p "console.log(String(process.env.NODE_AUTH_TOKEN).length)"
+          npm pkg set version='0.0.2'
           npm publish --access public
